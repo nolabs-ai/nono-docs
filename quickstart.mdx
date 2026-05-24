@@ -9,7 +9,7 @@ Choose your platform to get started:
   <Tab title="CLI">
     **Install**
     ```bash
-    brew install always-further/tap/nono
+    brew install nono
     ```
 
     **Run a sandboxed command**
@@ -25,16 +25,16 @@ Choose your platform to get started:
   <Tab title="TypeScript">
     **Install**
     ```bash
-    npm install @anthropic-ai/nono
+    npm install nono-ts
     ```
 
     **Basic usage**
     ```typescript
-    import { CapabilitySet, apply, AccessMode } from '@anthropic-ai/nono';
+    import { CapabilitySet, apply, AccessMode } from 'nono-ts';
 
-    const caps = new CapabilitySet()
-      .allowPath('./data', AccessMode.Read)
-      .blockNetwork();
+    const caps = new CapabilitySet();
+    caps.allowPath('./data', AccessMode.Read);
+    caps.blockNetwork();
 
     apply(caps);
     // Now sandboxed - only ./data is readable, no network
@@ -43,18 +43,18 @@ Choose your platform to get started:
   <Tab title="Python">
     **Install**
     ```bash
-    pip install nono
+    pip install nono-py
     ```
 
     **Basic usage**
     ```python
-    import nono
+    from nono_py import CapabilitySet, AccessMode, apply
 
-    caps = nono.CapabilitySet()
-    caps.allow_path("./data", nono.AccessMode.READ)
+    caps = CapabilitySet()
+    caps.allow_path("./data", AccessMode.READ)
     caps.block_network()
 
-    nono.apply(caps)
+    apply(caps)
     # Now sandboxed - only ./data is readable, no network
     ```
   </Tab>
