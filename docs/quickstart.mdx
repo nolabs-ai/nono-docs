@@ -58,6 +58,39 @@ Choose your platform to get started:
     # Now sandboxed - only ./data is readable, no network
     ```
   </Tab>
+  <Tab title="Go">
+    **Install**
+    ```bash
+    go get github.com/always-further/nono-go
+    ```
+
+    **Basic usage**
+    ```go
+    package main
+
+    import (
+    	"log"
+
+    	nono "github.com/always-further/nono-go"
+    )
+
+    func main() {
+    	caps := nono.New()
+    	defer caps.Close()
+
+    	if err := caps.AllowPath("./data", nono.AccessRead); err != nil {
+    		log.Fatal(err)
+    	}
+    	if err := caps.SetNetworkMode(nono.NetworkBlocked); err != nil {
+    		log.Fatal(err)
+    	}
+
+    	if err := nono.Apply(caps); err != nil {
+    		log.Fatal(err)
+    	}
+    }
+    ```
+  </Tab>
 </Tabs>
 
 ## Next Steps

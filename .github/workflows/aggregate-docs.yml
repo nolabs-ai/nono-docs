@@ -29,6 +29,7 @@ jobs:
           GH_TOKEN: ${{ secrets.DOCS_PAT }}
         run: |
           git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono.git nono
+          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-go.git nono-go
           git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-py.git nono-py
           git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-ts.git nono-ts
 
@@ -42,6 +43,7 @@ jobs:
           # Copy content from sub-repos
           cp -r nono/docs/cli output/
           cp -r nono/docs/assets output/
+          cp -r nono-go/docs/go output/
           cp -r nono-py/docs/python output/
           cp -r nono-ts/docs/typescript output/
 
@@ -54,14 +56,17 @@ jobs:
           # Merge navigation from sub-repo docs.json into base docs.json
           # Each sub-repo's navigation.groups replaces the matching tab in the base config
           jq --slurpfile cli nono/docs/docs.json \
+             --slurpfile go nono-go/docs/docs.json \
              --slurpfile py nono-py/docs/docs.json \
              --slurpfile ts nono-ts/docs/docs.json \
              '
              ($cli[0].navigation.groups) as $cli_groups |
+             ($go[0].navigation.groups) as $go_groups |
              ($py[0].navigation.groups) as $py_groups |
              ($ts[0].navigation.groups) as $ts_groups |
              .navigation.tabs |= map(
                if .tab == "CLI" then .groups = $cli_groups
+               elif .tab == "Go" then .groups = $go_groups
                elif .tab == "Python" then .groups = $py_groups
                elif .tab == "TypeScript" then .groups = $ts_groups
                else .

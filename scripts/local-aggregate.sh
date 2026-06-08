@@ -6,6 +6,7 @@ REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 
 BASE_DOCS_DIR="${BASE_DOCS_DIR:-${REPO_ROOT}/docs}"
 CLI_REPO_DIR="${CLI_REPO_DIR:-${REPO_ROOT}/../nono}"
+GO_REPO_DIR="${GO_REPO_DIR:-${REPO_ROOT}/../nono-go}"
 PY_REPO_DIR="${PY_REPO_DIR:-${REPO_ROOT}/../nono-py}"
 TS_REPO_DIR="${TS_REPO_DIR:-${REPO_ROOT}/../nono-ts}"
 OUT_DIR="${OUT_DIR:-${REPO_ROOT}/.local-aggregate}"
@@ -34,6 +35,8 @@ require_dir "${BASE_DOCS_DIR}"
 require_file "${BASE_DOCS_DIR}/docs.json"
 require_dir "${CLI_REPO_DIR}/docs/cli"
 require_file "${CLI_REPO_DIR}/docs/docs.json"
+require_dir "${GO_REPO_DIR}/docs/go"
+require_file "${GO_REPO_DIR}/docs/docs.json"
 require_dir "${PY_REPO_DIR}/docs/python"
 require_file "${PY_REPO_DIR}/docs/docs.json"
 require_dir "${TS_REPO_DIR}/docs/typescript"
@@ -44,18 +47,22 @@ mkdir -p "${OUT_DOCS_DIR}"
 
 cp -R "${BASE_DOCS_DIR}/." "${OUT_DOCS_DIR}/"
 cp -R "${CLI_REPO_DIR}/docs/cli" "${OUT_DOCS_DIR}/"
+cp -R "${GO_REPO_DIR}/docs/go" "${OUT_DOCS_DIR}/"
 cp -R "${PY_REPO_DIR}/docs/python" "${OUT_DOCS_DIR}/"
 cp -R "${TS_REPO_DIR}/docs/typescript" "${OUT_DOCS_DIR}/"
 
 jq --slurpfile cli "${CLI_REPO_DIR}/docs/docs.json" \
+   --slurpfile go "${GO_REPO_DIR}/docs/docs.json" \
    --slurpfile py "${PY_REPO_DIR}/docs/docs.json" \
    --slurpfile ts "${TS_REPO_DIR}/docs/docs.json" \
    '
    ($cli[0].navigation.groups) as $cli_groups |
+   ($go[0].navigation.groups) as $go_groups |
    ($py[0].navigation.groups) as $py_groups |
    ($ts[0].navigation.groups) as $ts_groups |
    .navigation.tabs |= map(
      if .tab == "CLI" then .groups = $cli_groups
+     elif .tab == "Go" then .groups = $go_groups
      elif .tab == "Python" then .groups = $py_groups
      elif .tab == "TypeScript" then .groups = $ts_groups
      else .

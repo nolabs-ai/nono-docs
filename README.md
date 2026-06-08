@@ -6,12 +6,12 @@ Unified documentation site for the Nono sandboxing ecosystem, built with [Mintli
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  nono/docs/     │     │  nono-py/docs/  │     │  nono-ts/docs/  │
-│  └── cli/       │     │  └── python/    │     │  └── typescript/│
-└────────┬────────┘     └────────┬────────┘     └────────┬────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
+│  nono/docs/     │     │ nono-go/docs/  │     │ nono-py/docs/  │     │ nono-ts/docs/  │
+│  └── cli/       │     │ └── go/        │     │ └── python/    │     │ └── typescript/│
+└────────┬────────┘     └───────┬───────┘     └───────┬───────┘     └───────┬────────┘
+         │                      │                     │                     │
+         └──────────────────────┴─────────────────────┼─────────────────────┘
+                                                       │
                     ┌────────────▼────────────┐
                     │  multirepo-action       │
                     │  (GitHub Actions)       │
@@ -40,6 +40,7 @@ Unified documentation site for the Nono sandboxing ecosystem, built with [Mintli
 | Overview | Landing page + quickstart | `nono-docs/` |
 | CLI | Command-line tool | `nono/docs/cli/` |
 | Core | Rust library (placeholder) | `nono-docs/core/` |
+| Go | Go SDK | `nono-go/docs/go/` |
 | TypeScript | TypeScript SDK | `nono-ts/docs/typescript/` |
 | Python | Python SDK | `nono-py/docs/python/` |
 
@@ -50,6 +51,7 @@ Unified documentation site for the Nono sandboxing ecosystem, built with [Mintli
 Create a GitHub PAT with `repo` scope and add it as `DOCS_PAT` secret to:
 - `always-further/nono-docs`
 - `always-further/nono`
+- `always-further/nono-go`
 - `always-further/nono-py`
 - `always-further/nono-ts`
 
@@ -88,6 +90,7 @@ mintlify dev
 | Overview pages | `nono-docs/` (this repo) |
 | Core library docs | `nono-docs/core/` (this repo) |
 | CLI documentation | `nono/docs/cli/` |
+| Go SDK docs | `nono-go/docs/go/` |
 | TypeScript SDK docs | `nono-ts/docs/typescript/` |
 | Python SDK docs | `nono-py/docs/python/` |
 
