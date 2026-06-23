@@ -28,10 +28,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DOCS_PAT }}
         run: |
-          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono.git nono
-          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-go.git nono-go
-          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-py.git nono-py
-          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/always-further/nono-ts.git nono-ts
+          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/nolabs-ai/nono.git nono
+          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/nolabs-ai/nono-go.git nono-go
+          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/nolabs-ai/nono-py.git nono-py
+          git clone --depth 1 https://x-access-token:${GH_TOKEN}@github.com/nolabs-ai/nono-ts.git nono-ts
 
       - name: Aggregate docs and merge navigation
         run: |

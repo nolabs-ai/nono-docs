@@ -49,11 +49,11 @@ Unified documentation site for the Nono sandboxing ecosystem, built with [Mintli
 ### 1. Create a Personal Access Token
 
 Create a GitHub PAT with `repo` scope and add it as `DOCS_PAT` secret to:
-- `always-further/nono-docs`
-- `always-further/nono`
-- `always-further/nono-go`
-- `always-further/nono-py`
-- `always-further/nono-ts`
+- `nolabs-ai/nono-docs`
+- `nolabs-ai/nono`
+- `nolabs-ai/nono-go`
+- `nolabs-ai/nono-py`
+- `nolabs-ai/nono-ts`
 
 ### 2. Connect Mintlify
 
