@@ -19,7 +19,7 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/always-further/nono"
+        "href": "https://github.com/nolabs-ai/nono"
       }
     ],
     "primary": {
@@ -257,7 +257,7 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/always-further/nono",
+      "github": "https://github.com/nolabs-ai/nono",
       "website": "https://nono.sh"
     }
   }
