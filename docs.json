@@ -100,7 +100,8 @@
           {
             "group": "Audit",
             "pages": [
-              "cli/features/audit"
+              "cli/features/audit",
+              "cli/features/session-recording"
             ]
           },
           {
